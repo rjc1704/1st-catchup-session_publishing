@@ -1,0 +1,375 @@
+/* =============================================
+   기본 초기화
+   ============================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body {
+  font-family: "Pretendard Std Variable";
+  color: #222;
+  background-color: #f8f8f8;
+  /* ★ 1. 페이지 뼈대: header / main / footer 세로로 쌓기 */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* =============================================
+   HEADER
+   ============================================= */
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  /* ★ 2. max-width 로 컨텐츠 최대 너비 고정 */
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 200px;
+  height: 64px;
+  /* ★ 3-(2). GNB: flex 로 로고와 메뉴를 양 끝 배치 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 4px;
+}
+
+.nav a {
+  padding: 8px 14px;
+  text-decoration: none;
+  color: #555;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.nav a:hover {
+  color: #4f46e5;
+  background-color: #f0f0ff;
+}
+
+/* =============================================
+   MAIN
+   ============================================= */
+.main {
+  margin-top: 64px; /* 고정된 header 높이만큼 밀어내기 */
+  flex: 1; /* footer 를 항상 하단에 고정 */
+}
+
+/* =============================================
+   4. HERO — position: absolute 로 overlay 만들기
+   ============================================= */
+.hero {
+  /*
+   * ★ position: relative
+   *   자식의 absolute 기준점이 됩니다.
+   */
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  /* ★ 5. 이미지 다루기: 비율 유지하며 영역 채우기 */
+  object-fit: cover;
+  display: block;
+}
+
+.hero-overlay {
+  /*
+   * ★ position: absolute
+   *   가장 가까운 relative 조상(.hero)을 기준으로
+   *   top/left 로 위치를 지정해 이미지 위에 올립니다.
+   */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 80px;
+  color: #fff;
+}
+
+.hero-badge {
+  display: inline-block;
+  background-color: #4f46e5;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+.hero-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.hero-desc {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 28px;
+}
+
+.hero-btn {
+  background-color: #4f46e5;
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  width: fit-content;
+  transition: background-color 0.2s;
+}
+
+.hero-btn:hover {
+  background-color: #4338ca;
+}
+
+/* =============================================
+   섹션 공통
+   ============================================= */
+
+.movie-section {
+  max-width: 1200px;
+  margin: 64px auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.more-link {
+  font-size: 14px;
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.more-link:hover {
+  text-decoration: underline;
+}
+
+/* =============================================
+   position: absolute 배지 — 강의 카드
+   ============================================= */
+.card-thumbnail {
+  /*
+   * ★ position: relative → .badge 의 기준점
+   */
+  position: relative;
+}
+
+.card-thumbnail img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  /*
+   * ★ position: absolute
+   *   .card-thumbnail 을 기준으로 왼쪽 위에 배치
+   */
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.badge--hot {
+  background-color: #ef4444;
+}
+.badge--new {
+  background-color: #4f46e5;
+}
+.badge--sale {
+  background-color: #f97316;
+}
+
+.card-body {
+  padding: 18px 20px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* =============================================
+   6. 영화 카드 그리드 — grid 로 2차원 레이아웃
+   ============================================= */
+.movie-grid {
+  /*
+   * ★ display: grid
+   *   자식 요소를 격자 형태로 배치합니다.
+   */
+  display: grid;
+
+  /*
+   * ★ grid-template-columns: repeat(4, 1fr)
+   *   4개의 열을 만들고, 각 열이 동등하게 1fr 씩 차지
+   */
+  grid-template-columns: repeat(4, 1fr);
+
+  /*
+   * ★ gap: 행·열 사이 간격
+   */
+  gap: 32px 20px;
+}
+
+.movie-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.poster-wrap {
+  position: relative; /* .movie-score 의 absolute 기준점 */
+}
+
+.poster-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.movie-score {
+  /* 포스터 오른쪽 하단에 점수 배지 */
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: #fbbf24;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.movie-info {
+  padding: 14px 16px 18px;
+}
+
+.movie-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-meta {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* =============================================
+   FOOTER — flex space-between 3등분
+   ============================================= */
+.footer {
+  background-color: #111827;
+  color: #9ca3af;
+}
+
+.footer-inner {
+  /*
+   * ★ max-width: 1920px
+   *   화면이 이 너비보다 작아지면 자연스럽게 반응
+   */
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 28px 200px;
+
+  /*
+   * ★ flex + justify-content: space-between
+   *   3개의 flex 아이템(카피라이트 / 링크 / SNS)을
+   *   양 끝과 가운데에 균등하게 배치합니다.
+   *   화면이 좁아질수록 아이템 사이 간격이 동일하게 줄어듭니다.
+   */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 왼쪽: 카피라이트 */
+.footer-copy {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+/* 가운데: 링크 목록 */
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
