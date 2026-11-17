@@ -19,6 +19,17 @@ body {
 }
 
 /* =============================================
+   CONTAINER — 컨텐츠 최대 너비 + 가운데 정렬
+   ============================================= */
+.container {
+  /* ★ 2. 배경은 화면 끝까지, 콘텐츠만 폭을 제한 */
+  max-width: 1920px;
+  margin: 0 auto;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+/* =============================================
    HEADER
    ============================================= */
 .header {
@@ -30,11 +41,8 @@ body {
   z-index: 100;
 }
 
-.header-inner {
-  /* ★ 2. max-width 로 컨텐츠 최대 너비 고정 */
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 200px;
+/* ★ 공통 .container 위에 헤더만의 배치를 덧붙입니다 */
+.header .container {
   height: 64px;
   /* ★ 3-(2). GNB: flex 로 로고와 메뉴를 양 끝 배치 */
   display: flex;
@@ -331,20 +339,19 @@ body {
   color: #9ca3af;
 }
 
-.footer-inner {
-  /*
-   * ★ max-width: 1920px
-   *   화면이 이 너비보다 작아지면 자연스럽게 반응
-   */
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 28px 200px;
+/*
+ * ★ 공통 .container 위에 푸터만의 배치를 덧붙입니다.
+ *   좌우 padding 은 .container 가 담당하고,
+ *   위아래 padding 과 flex 정렬만 여기서 추가합니다.
+ */
+.footer .container {
+  padding-top: 28px;
+  padding-bottom: 28px;
 
   /*
    * ★ flex + justify-content: space-between
    *   3개의 flex 아이템(카피라이트 / 링크 / SNS)을
    *   양 끝과 가운데에 균등하게 배치합니다.
-   *   화면이 좁아질수록 아이템 사이 간격이 동일하게 줄어듭니다.
    */
   display: flex;
   align-items: center;
